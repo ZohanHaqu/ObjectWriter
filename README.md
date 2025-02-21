@@ -14,9 +14,8 @@ ObjectWriter is a simple Python code editor and writer developed by Zohan Haque 
 
 ## Requirements
 
-- **Operating System**: Windows 7 or later
+- **Operating System**: Windows 7,Vista or later
 - **Python**: Version 3.x (Python 3.6 or higher recommended)
-- **Tkinter**: Included with Python 3.x installations
 
 ## Installation
 
