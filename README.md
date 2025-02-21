@@ -1,7 +1,5 @@
 # ObjectWriter - Python Code Editor
 
-## Screenshot
-
 ![Screenshot](https://i.imgur.com/nZUB3uz.png)
 
 ObjectWriter is a simple Python code editor and writer developed by Zohan Haque using Python's Tkinter library. It provides a lightweight and user-friendly environment for writing Python code with essential features for editing and saving files. Although it is not a fully advanced IDE, it offers everything needed for basic Python development.
