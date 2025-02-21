@@ -1,0 +1,79 @@
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="3F4A77DF-86D5-40DB-BADB-46DBE3702FC6" UpgradeCode="7EDC527A-14F5-484B-A20F-3253BFA4EF3C" Version="1.0.0.0" Name="ObjectWriter" Manufacturer="Zohan Haque" Language="1033">
+    <Package InstallerVersion="405" InstallScope="perMachine" InstallPrivileges="elevated" Compressed="yes" Manufacturer="Zohan Haque" />
+    <Media Cabinet="media1.cab" Id="1" EmbedCab="yes" />
+    <Icon Id="MyIcon" SourceFile="ObjectWriter\objectwriter.ico" />
+    <WixVariable Id="WixUIDialogBmp" Value="Wisz\wizard.bmp" />
+    <WixVariable Id="WixUIBannerBmp" Value="Wisz\header.bmp" />
+    <WixVariable Id="WixUILicenseRtf" Value="MITLicense.rtf" />
+    <Property Id="ARPPRODUCTICON" Value="MyIcon" />
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="MenuAppFolder" Name="TheAppName" />
+      </Directory>
+      <Directory Id="DesktopFolder" Name="Desktop" />
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="MyAppFolder" Name="ObjectWriter" />
+      </Directory>
+    </Directory>
+    <ComponentGroup Id="RemoveFolders">
+      <ComponentRef Id="Remove.MenuAppFolder" />
+      <ComponentRef Id="Remove.ProgramFilesFolder" />
+    </ComponentGroup>
+    <ComponentGroup Id="ObjectWriter">
+      <ComponentRef Id="CId92505575" />
+      <ComponentRef Id="CId3D2D402A" />
+      <ComponentRef Id="CId63387F15" />
+      <ComponentRef Id="CId395D2E43" />
+    </ComponentGroup>
+    <Feature Id="ProductFeature" Title="ObjectWriter Beta" Description="Beta version (unstable)">
+      <ComponentGroupRef Id="RemoveFolders" />
+      <ComponentGroupRef Id="ObjectWriter" />
+    </Feature>
+    <UIRef Id="WixUI_FeatureTree" />
+    <DirectoryRef Id="ProgramFilesFolder">
+      <Component Id="Remove.ProgramFilesFolder" Guid="AEEF27C2-05B7-4703-8FCD-5329BE500E13">
+        <RemoveFolder Id="ProgramFilesFolder" On="uninstall" />
+        <RegistryValue Root="HKMU" Key="Software\[Manufacturer]\[ProductName]" Type="string" Value="" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="MyAppFolder">
+      <Component Id="CId395D2E43" Guid="7BAB7B44-E472-48A5-972C-512940A898D4" Win64="no">
+        <File Id="FId427F826D" Name="ObjectWriter.exe" Source="C:\Users\zohan\Downloads\ObjectWriter\" />
+        <CreateFolder />
+      </Component>
+      <Component Id="CId63387F15" Guid="34B78D00-D893-44FB-8CAF-B49E279E6DC9" Win64="no">
+        <File Id="FIdD7BB7D8F" Name="ObjectWriter.spec" Source="C:\Users\zohan\Downloads\ObjectWriter\" />
+        <CreateFolder />
+      </Component>
+      <Component Id="CId3D2D402A" Guid="72CD797C-6549-445A-8240-AD737B57F961" Win64="no">
+        <File Id="FId36CF5B79" Name="ObjectWriter.py" Source="C:\Users\zohan\Downloads\ObjectWriter\" />
+        <CreateFolder />
+      </Component>
+      <Component Id="CId92505575" Guid="8F852113-11A6-4A9D-B2D2-57F07651587B" Win64="no">
+        <File Id="FIdF1B3696C" Name="objectwriter.ico" Source="C:\Users\zohan\Downloads\ObjectWriter\" />
+        <CreateFolder />
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="ProgramMenuFolder">
+      <Component Id="CSCId8974A059" Guid="9C652C60-8120-408B-8207-E3283C59E61C">
+        <Shortcut Id="SId8F056765" Name="ObjectWriter" Target="[!FId427F826D]" WorkingDirectory="MyAppFolder" Icon="MyIcon" />
+        <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+        <RemoveFolder Id="CSCId8974A059" Directory="ProgramMenuFolder" On="uninstall" />
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="MenuAppFolder">
+      <Component Id="Remove.MenuAppFolder" Guid="2F1989B4-1457-4BF3-81EC-C12E916637B2">
+        <RemoveFolder Id="MenuAppFolder" On="uninstall" />
+        <RegistryValue Root="HKMU" Key="Software\[Manufacturer]\[ProductName]" Type="string" Value="" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="DesktopFolder">
+      <Component Id="CSCId582E318A" Guid="79C0A15B-00BF-4A42-A4BD-A21A6891D969">
+        <Shortcut Id="SId72794DE0" Name="ObjectWriter" Description="ObjectWriter Beta" Target="[!FId427F826D]" WorkingDirectory="MyAppFolder" Icon="MyIcon" />
+        <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+        <RemoveFolder Id="CSCId582E318A" Directory="DesktopFolder" On="uninstall" />
+      </Component>
+    </DirectoryRef>
+  </Product>
+</Wix>
